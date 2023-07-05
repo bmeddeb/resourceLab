@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head>
+  <title>Create or Edit User</title>
+
+</head>
+<body>
+
+<main layout:fragment="content">
+  <div class="container">
+    <h1 th:if="${user.userID} == null" class="title">Create User</h1> <!-- Add 'title' class -->
+    <h1 th:unless="${user.userID} == null" class="title">Edit User</h1> <!-- Add 'title' class -->
+    <form th:object="${user}" th:action="@{/user-management/save}" method="post" class="form"> <!-- Add 'form' class -->
+      <input type="hidden" th:field="*{userID}">
+      <label for="username">Username:</label>
+      <input type="text" th:field="*{userName}" id="username">
+      <label for="email">Email:</label>
+      <input type="email" th:field="*{userEmail}" id="email">
+      <label for="password">Password:</label>
+      <input type="password" th:field="*{userPassword}" id="password">
+      <label for="contact">Contact:</label>
+      <input type="text" th:field="*{userContact}" id="contact">
+      <label for="role">Role:</label>
+      <input type="text" th:field="*{role}" id="role">
+      <button type="submit" class="btn btn-primary">Save</button> <!-- Add 'btn btn-primary' classes -->
+    </form>
+  </div>
+</main>
+
+</body>
+</html>

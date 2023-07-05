@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head>
+  <title>Resource Management</title>
+</head>
+<body>
+<main layout:fragment="content">
+  <div class="container">
+    <h1>Resource Management</h1>
+    <a class="btn btn-primary" th:href="@{/resource-management/new}">Add New Resource</a>
+    <table class="table table-striped mt-4">
+      <thead>
+      <tr>
+        <th>Resource ID</th>
+        <th>Resource Name</th>
+        <th>Resource Description</th>
+        <th>Resource Status</th>
+        <th>Maintenance Status</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="resource : ${resources}">
+        <td th:text="${resource.resourceID}"></td>
+        <td th:text="${resource.resourceName}"></td>
+        <td th:text="${resource.resourceDescription}"></td>
+        <td th:text="${resource.resourceStatus}"></td>
+        <td th:text="${resource.maintenanceStatus}"></td>
+        <td>
+          <a class="btn btn-info" th:href="@{'/resource-management/edit/' + ${resource.resourceID}}">Edit</a>
+          <a class="btn btn-danger" th:href="@{'/resource-management/delete/' + ${resource.resourceID}}">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

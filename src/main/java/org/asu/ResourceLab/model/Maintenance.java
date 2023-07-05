@@ -1,6 +1,10 @@
 package org.asu.ResourceLab.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
+
+
 
 public class Maintenance {
 
@@ -24,18 +28,19 @@ public class Maintenance {
     }
 
     // Getters
-    public int getMaintenanceID() {
+    public int getMaintenanceID () {
         return maintenanceID;
     }
 
-    public int getResourceID() {
+    public int getResourceID () {
         return resourceID;
     }
 
-    public int getUserID() {
+    public int getUserID () {
         return userID;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getMaintenanceDate() {
         return maintenanceDate;
     }
@@ -45,18 +50,19 @@ public class Maintenance {
     }
 
     // Setters
-    public void setMaintenanceID(int maintenanceID) {
+    public void setMaintenanceID (int maintenanceID) {
         this.maintenanceID = maintenanceID;
     }
 
-    public void setResourceID(int resourceID) {
+    public void setResourceID (int resourceID) {
         this.resourceID = resourceID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID (int userID) {
         this.userID = userID;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public void setMaintenanceDate(Date maintenanceDate) {
         this.maintenanceDate = maintenanceDate;
     }
@@ -64,4 +70,5 @@ public class Maintenance {
     public void setMaintenanceDetails(String maintenanceDetails) {
         this.maintenanceDetails = maintenanceDetails;
     }
+
 }

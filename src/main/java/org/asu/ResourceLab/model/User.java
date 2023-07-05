@@ -1,12 +1,9 @@
 package org.asu.ResourceLab.model;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.jdbc.core.JdbcTemplate;
-
 
 public class User {
 
-    private int userID;
+    private Integer userID;
     private String userName;
     private String userEmail;
     private String userPassword;
@@ -18,7 +15,7 @@ public class User {
     }
 
     public User(int userID, String userName, String userEmail, String userPassword, String userContact, String role) {
-        this.userID = userID;
+        this.userID = this.userID;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;

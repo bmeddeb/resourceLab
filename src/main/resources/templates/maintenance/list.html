@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head>
+  <title>Maintenance Management</title>
+</head>
+<body>
+<main layout:fragment="content">
+  <div class="container">
+    <h1>Maintenance List</h1>
+    <a th:href="@{/maintenance/new}" class="btn btn-primary mb-3">New Maintenance</a>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">#ID</th>
+        <th scope="col">Resource ID</th>
+        <th scope="col">User ID</th>
+        <th scope="col">Maintenance Date</th>
+        <th scope="col">Maintenance Details</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="maintenance : ${maintenances}">
+        <th scope="row" th:text="${maintenance.maintenanceID}">1</th>
+        <td th:text="${maintenance.resourceID}">Resource 1</td>
+        <td th:text="${maintenance.userID}">User 1</td>
+        <td th:text="${#dates.format(maintenance.maintenanceDate, 'dd MMM yyyy')}">25 June 2023</td>
+        <td th:text="${maintenance.maintenanceDetails}">Maintenance details...</td>
+        <td>
+          <a th:href="@{/maintenance/edit/{id}(id=${maintenance.maintenanceID})}" class="btn btn-secondary">Edit</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

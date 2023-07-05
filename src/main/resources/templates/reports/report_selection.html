@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+
+<head>
+    <title>Reports List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+</head>
+
+<body>
+<h1>Select Report Type</h1>
+
+<form action="#" th:action="@{/reports/generate}" method="post">
+    <select name="reportType">
+        <option value="resourceUtilization">Resource Utilization Report</option>
+        <option value="userActivity">User Activity Report</option>
+        <option value="cancelledBookings">Cancelled Bookings Report</option>
+        <option value="resourceStatus">Resource Status Report</option>
+        <option value="peakUsage">Peak Usage Report</option>
+    </select>
+
+    <input type="submit" value="Generate Report"/>
+</form>
+
+<a href="/reports/create_manual">Create Manual Report</a>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head>
+  <title>Delete Resource</title>
+</head>
+<body>
+<main layout:fragment="content">
+  <div class="container">
+    <h1>Delete Resource</h1>
+    <p>Are you sure you want to delete the following resource?</p>
+    <p><strong th:text="${resource.resourceName}"></strong></p>
+    <form th:action="@{'/resource-management/delete/' + ${resource.resourceID}}" method="post">
+      <button type="submit" class="btn btn-danger">Delete</button>
+      <a class="btn btn-secondary" th:href="@{/resource-management}">Cancel</a>
+    </form>
+  </div>
+</main>
+</body>
+</html>

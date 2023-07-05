@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -47,9 +50,20 @@ public class UtilizationReportRepository {
     }
 
     public int createReport(UtilizationReport utilizationReport) {
-        return jdbcTemplate.update("INSERT INTO UtilizationReport(ResourceID, UserID, GeneratedDate, UtilizationData) VALUES (?, ?, ?, ?)",
-                new Object[]{utilizationReport.getResourceID(), utilizationReport.getUserID(), utilizationReport.getGeneratedDate(), utilizationReport.getUtilizationData()});
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection
+                    .prepareStatement("INSERT INTO UtilizationReport(ResourceID, UserID, GeneratedDate, UtilizationData) VALUES (?, ?, ?, ?)", new String[] {"ReportID"});
+            ps.setInt(1, utilizationReport.getResourceID());
+            ps.setInt(2, utilizationReport.getUserID());
+            ps.setTimestamp(3, new java.sql.Timestamp(utilizationReport.getGeneratedDate().getTime()));
+            ps.setString(4, utilizationReport.getUtilizationData());
+            return ps;
+        }, keyHolder);
+
+        return keyHolder.getKey().intValue();
     }
+
 
     public int updateReport(UtilizationReport utilizationReport) {
         return jdbcTemplate.update("UPDATE UtilizationReport SET ResourceID=?, UserID=?, GeneratedDate=?, UtilizationData=? WHERE ReportID=?",

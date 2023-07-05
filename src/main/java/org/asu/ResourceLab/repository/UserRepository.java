@@ -39,7 +39,8 @@ public class UserRepository {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
-            user.setUserID(rs.getInt("UserID"));
+            Integer userID = rs.getObject("UserID", Integer.class);
+            user.setUserID(userID);
             user.setUserName(rs.getString("UserName"));
             user.setUserEmail(rs.getString("UserEmail"));
             user.setUserPassword(rs.getString("UserPassword"));
@@ -59,12 +60,15 @@ public class UserRepository {
     }
 
     public List<User> getAllUsers() {
-        return jdbcTemplate.query("SELECT * FROM User", new UserRowMapper());
+        return jdbcTemplate.query("SELECT * FROM User WHERE Role != ?", new Object[]{"deleted"}, new UserRowMapper());
     }
 
+
     public int deleteUser(int id) {
-        return jdbcTemplate.update("DELETE FROM User WHERE UserID=?", new Object[]{id});
+        // Update the User's role to 'deleted' instead of deleting the record.
+        return jdbcTemplate.update("UPDATE User SET Role = ? WHERE UserID = ?", new Object[]{"deleted", id});
     }
+
 
 
     public int updateUser(User user) {

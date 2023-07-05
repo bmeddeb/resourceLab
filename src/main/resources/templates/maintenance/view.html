@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head>
+  <title>View Maintenance</title>
+</head>
+<body>
+<main layout:fragment="content">
+  <div class="container">
+    <h1>View Maintenance</h1>
+    <table class="table">
+      <tbody>
+      <tr>
+        <th scope="row">Maintenance ID</th>
+        <td th:text="${maintenance.maintenanceID}">1</td>
+      </tr>
+      <tr>
+        <th scope="row">Resource ID</th>
+        <td th:text="${maintenance.resourceID}">Resource 1</td>
+      </tr>
+      <tr>
+        <th scope="row">User ID</th>
+        <td th:text="${maintenance.userID}">User 1</td>
+      </tr>
+      <tr>
+        <th scope="row">Maintenance Date</th>
+        <td th:text="${#dates.format(maintenance.maintenanceDate, 'dd MMM yyyy')}">25 June 2023</td>
+      </tr>
+      <tr>
+        <th scope="row">Maintenance Details</th>
+        <td th:text="${maintenance.maintenanceDetails}">Maintenance details...</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

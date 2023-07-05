@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head>
+    <title>Create or Edit Resource</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="container">
+        <h1 th:text="${resource.resourceID == 0} ? 'Create New Resource' : 'Edit Resource'"></h1>
+        <form th:action="@{/resource-management/save}" th:object="${resource}" method="post">
+            <!-- Hidden field for resourceID -->
+            <input type="hidden" th:field="*{resourceID}">
+
+            <div class="form-group">
+                <label for="resourceName">Resource Name</label>
+                <input type="text" th:field="*{resourceName}" class="form-control" id="resourceName" required>
+            </div>
+            <div class="form-group">
+                <label for="resourceDescription">Resource Description</label>
+                <textarea th:field="*{resourceDescription}" class="form-control" id="resourceDescription" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="resourceStatus">Resource Status</label>
+                <select th:field="*{resourceStatus}" class="form-control" id="resourceStatus" required>
+                    <option value="Available">Available</option>
+                    <option value="Booked">Booked</option>
+                    <option value="Out Of Service">Out Of Service</option>
+                    <!-- add more options as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="maintenanceStatus">Maintenance Status</label>
+                <select th:field="*{maintenanceStatus}" class="form-control" id="maintenanceStatus" required>
+                    <option value="Good">Good</option>
+                    <option value="Requires maintenance">Requires maintenance</option>
+                    <option value="Maintenance in progress">Maintenance in progress</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a class="btn btn-secondary" th:href="@{/resource-management}">Cancel</a>
+        </form>
+    </div>
+</main>
+
+
+</body>
+</html>

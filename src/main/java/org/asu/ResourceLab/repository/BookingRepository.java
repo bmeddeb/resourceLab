@@ -27,6 +27,7 @@ public class BookingRepository {
             booking.setBookingDate(rs.getTimestamp("BookingDate"));
             booking.setBookingStartTime(rs.getTimestamp("BookingStartTime"));
             booking.setBookingEndTime(rs.getTimestamp("BookingEndTime"));
+            booking.setStatus(rs.getString("Status"));
             return booking;
         }
     }
@@ -39,6 +40,9 @@ public class BookingRepository {
         }
     }
 
+    public int cancelBooking(int id) {
+        return jdbcTemplate.update("UPDATE Booking SET Status='Cancelled' WHERE BookingID=?", new Object[]{id});
+    }
     public List<Booking> getAllBookings() {
         return jdbcTemplate.query("SELECT * FROM Booking", new BookingRowMapper());
     }
@@ -48,12 +52,12 @@ public class BookingRepository {
     }
 
     public int createBooking(Booking booking) {
-        return jdbcTemplate.update("INSERT INTO Booking(UserID, ResourceID, BookingDate, BookingStartTime, BookingEndTime) VALUES (?, ?, ?, ?, ?)",
-                new Object[]{booking.getUserID(), booking.getResourceID(), booking.getBookingDate(), booking.getBookingStartTime(), booking.getBookingEndTime()});
+        return jdbcTemplate.update("INSERT INTO Booking(UserID, ResourceID, BookingDate, BookingStartTime, BookingEndTime, Status) VALUES (?, ?, ?, ?, ?, ?)",
+                new Object[]{booking.getUserID(), booking.getResourceID(), booking.getBookingDate(), booking.getBookingStartTime(), booking.getBookingEndTime(), booking.getStatus()});
     }
 
     public int updateBooking(Booking booking) {
-        return jdbcTemplate.update("UPDATE Booking SET UserID=?, ResourceID=?, BookingDate=?, BookingStartTime=?, BookingEndTime=? WHERE BookingID=?",
-                new Object[]{booking.getUserID(), booking.getResourceID(), booking.getBookingDate(), booking.getBookingStartTime(), booking.getBookingEndTime(), booking.getBookingID()});
+        return jdbcTemplate.update("UPDATE Booking SET UserID=?, ResourceID=?, BookingDate=?, BookingStartTime=?, BookingEndTime=?, Status=? WHERE BookingID=?",
+                new Object[]{booking.getUserID(), booking.getResourceID(), booking.getBookingDate(), booking.getBookingStartTime(), booking.getBookingEndTime(), booking.getStatus(), booking.getBookingID()});
     }
 }

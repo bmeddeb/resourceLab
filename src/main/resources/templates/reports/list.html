@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+
+<head>
+  <title>Reports List</title>
+  <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+</head>
+
+<body>
+<section layout:fragment="content">
+  <div class="container">
+    <h2>Reports</h2>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Report ID</th>
+        <th>Resource ID</th>
+        <th>User ID</th>
+        <th>Generated Date</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="report : ${reports}">
+        <td th:text="${report.reportID}"></td>
+        <td th:text="${report.resourceID}"></td>
+        <td th:text="${report.userID}"></td>
+        <td th:text="${#dates.format(report.generatedDate, 'dd-MM-yyyy')}"></td>
+        <td>
+          <a th:href="@{'/reports/' + ${report.reportID}}">View</a>
+          <a th:href="@{'/reports/delete/' + ${report.reportID}}" onclick="return confirm('Are you sure you want to delete this report?')">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <a href="/reports/create">Generate New Report</a>
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    hljs.highlightAll();
+  });
+</script>
+
+</body>
+
+</html>

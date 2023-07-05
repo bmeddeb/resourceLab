@@ -1,9 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+
 <head>
-    <title>Home Page</title>
+    <title>Home</title>
+    <style>
+        /* Add custom CSS here */
+    </style>
 </head>
 <body>
-<h1>Welcome to the Resource Lab Management System!</h1>
+<div layout:fragment="content" class="container">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">ResourceLab</a>
+            </div>
+
+            <!-- Home link -->
+            <div class="navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content area -->
+    <div class="row">
+
+        <!-- Sidebar -->
+        <div class="col-md-3 sidebar">
+
+            <ul class="navbar-nav ml-auto flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user-management}">User Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/resource-management}">Resource Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/booking-management}">Booking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/maintenance}">Maintenance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/reports}">Reports</a>
+                </li>
+
+        </div>
+
+        <!-- Main content -->
+        <div class="col-md-9">
+            <!-- Main content goes here -->
+        </div>
+    </div>
+</div>
 </body>
 </html>

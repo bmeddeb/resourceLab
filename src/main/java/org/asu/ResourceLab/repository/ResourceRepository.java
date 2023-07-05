@@ -21,7 +21,8 @@ public class ResourceRepository {
         @Override
         public Resource mapRow(ResultSet rs, int rowNum) throws SQLException {
             Resource resource = new Resource();
-            resource.setResourceID(rs.getInt("ResourceID"));
+            Integer resourceID = rs.getObject("ResourceID", Integer.class);
+            resource.setResourceID(resourceID);
             resource.setResourceName(rs.getString("ResourceName"));
             resource.setResourceDescription(rs.getString("ResourceDescription"));
             resource.setResourceStatus(rs.getString("ResourceStatus"));
@@ -39,12 +40,14 @@ public class ResourceRepository {
     }
 
     public List<Resource> getAllResources() {
-        return jdbcTemplate.query("SELECT * FROM Resource", new ResourceRowMapper());
+        return jdbcTemplate.query("SELECT * FROM Resource WHERE ResourceStatus != 'Deleted'", new ResourceRowMapper());
     }
 
+
     public int deleteResource(int id) {
-        return jdbcTemplate.update("DELETE FROM Resource WHERE ResourceID=?", new Object[]{id});
+        return jdbcTemplate.update("UPDATE Resource SET ResourceStatus='Deleted' WHERE ResourceID=?", new Object[]{id});
     }
+
 
     public int createResource(Resource resource) {
         return jdbcTemplate.update("INSERT INTO Resource(ResourceName, ResourceDescription, ResourceStatus, MaintenanceStatus) VALUES (?, ?, ?, ?)",

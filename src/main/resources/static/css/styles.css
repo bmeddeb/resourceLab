@@ -1,0 +1,75 @@
+/* Set the font for the entire page */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Style the navigation bar */
+.navbar {
+    background-color: #f8f9fa;
+}
+
+/* Style the navigation links */
+.nav-link {
+    color: #495057;
+}
+
+/* Style the navigation links when they're hovered over */
+.nav-link:hover {
+    color: #343a40;
+}
+
+/* Style the sidebar */
+.sidebar {
+    background-color: #f8f9fa;
+    padding: 15px;
+}
+
+/* Style the sidebar links */
+.list-group-item {
+    color: #495057;
+}
+
+/* Style the sidebar links when they're hovered over */
+.list-group-item:hover {
+    color: #343a40;
+    background-color: #e9ecef;
+}
+
+/* Style the main content area */
+.col-md-9 {
+    background-color: #fff;
+    padding: 15px;
+}
+
+/* Style the toggle button in the sidebar */
+.button-left {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+/* Change the color of the toggle button when it's hovered over */
+.button-left:hover {
+    background-color: #5a6268;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+

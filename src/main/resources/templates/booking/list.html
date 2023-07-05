@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head>
+    <title>Booking Management</title>
+
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="container">
+        <h1>Booking List</h1>
+        <a th:href="@{/booking-management/new}" class="btn btn-primary mb-3">New Booking</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Resource ID</th>
+                <th scope="col">Booking Date</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="booking : ${bookings}">
+                <th scope="row" th:text="${booking.bookingID}">1</th>
+                <td th:text="${booking.userID}">John Doe</td>
+                <td th:text="${booking.resourceID}">Resource 1</td>
+                <td th:text="${#dates.format(booking.bookingDate, 'yyyy-MM-dd')}">25 June 2023</td>
+                <td th:text="${#dates.format(booking.bookingStartTime, 'HH:mm')}">10:00</td>
+                <td th:text="${#dates.format(booking.bookingEndTime, 'HH:mm')}">11:00</td>
+                <td th:text="${booking.status}">Confirmed</td>
+                <td>
+                    <a th:href="@{/booking-management/edit/{id}(id=${booking.bookingID})}" class="btn btn-secondary">Edit</a>
+                    <form th:action="@{/booking-management/cancel/{id}(id=${booking.bookingID})}" method="post" style="display:inline;">
+                        <input type="submit" class="btn btn-danger" value="Cancel">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

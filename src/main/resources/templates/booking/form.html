@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head>
+  <title>Manage Booking</title>
+</head>
+<body>
+<main layout:fragment="content">
+  <div class="container">
+    <h1 th:text="${booking.bookingID == 0} ? 'Create New Booking' : 'Edit Booking'"></h1>
+    <form th:action="@{/booking-management/save}" th:object="${booking}" method="post">
+      <input type="hidden" th:field="*{bookingID}">
+      <div class="form-group">
+        <label for="userID">User ID</label>
+        <input type="text" th:field="*{userID}" class="form-control" id="userID" required>
+      </div>
+      <div class="form-group">
+        <label for="resourceID">Resource ID</label>
+        <input type="text" th:field="*{resourceID}" class="form-control" id="resourceID" required>
+      </div>
+      <div class="form-group">
+        <label for="bookingDate">Booking Date</label>
+        <input type="date" th:field="*{bookingDate}" class="form-control" id="bookingDate" required>
+      </div>
+      <div class="form-group">
+        <label for="bookingStartTime">Booking Start Time</label>
+        <input type="time" th:field="*{bookingStartTime}" class="form-control" id="bookingStartTime" required>
+      </div>
+      <div class="form-group">
+        <label for="bookingEndTime">Booking End Time</label>
+        <input type="time" th:field="*{bookingEndTime}" class="form-control" id="bookingEndTime" required>
+      </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select th:field="*{status}" class="form-control" id="status" required>
+          <option value="Confirmed">Confirmed</option>
+          <option value="Pending">Pending</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a class="btn btn-secondary" th:href="@{/booking-management}">Cancel</a>
+    </form>
+  </div>
+</main>
+</body>
+</html>

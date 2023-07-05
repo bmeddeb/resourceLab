@@ -30,6 +30,7 @@ public class MaintenanceRepository {
         }
     }
 
+
     public Maintenance getMaintenanceById(int id) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Maintenance WHERE MaintenanceID=?", new Object[]{id}, new MaintenanceRowMapper());
@@ -55,4 +56,5 @@ public class MaintenanceRepository {
         return jdbcTemplate.update("UPDATE Maintenance SET ResourceID=?, UserID=?, MaintenanceDate=?, MaintenanceDetails=? WHERE MaintenanceID=?",
                 new Object[]{maintenance.getResourceID(), maintenance.getUserID(), maintenance.getMaintenanceDate(), maintenance.getMaintenanceDetails(), maintenance.getMaintenanceID()});
     }
+
 }

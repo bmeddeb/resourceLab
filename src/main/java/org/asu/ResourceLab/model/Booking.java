@@ -1,5 +1,7 @@
 package org.asu.ResourceLab.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Booking {
@@ -8,21 +10,34 @@ public class Booking {
     private int userID;
     private int resourceID;
     private Date bookingDate;
+    @DateTimeFormat(pattern = "HH:mm")
     private Date bookingStartTime;
+
+    @DateTimeFormat(pattern = "HH:mm")
     private Date bookingEndTime;
+
+    private String status;
 
     // Default constructor
     public Booking() {
     }
 
     // Constructor with all parameters
-    public Booking(int bookingID, int userID, int resourceID, Date bookingDate, Date bookingStartTime, Date bookingEndTime) {
+    public Booking(int bookingID, int userID, int resourceID, Date bookingDate, Date bookingStartTime, Date bookingEndTime, String status) {
         this.bookingID = bookingID;
         this.userID = userID;
         this.resourceID = resourceID;
         this.bookingDate = bookingDate;
         this.bookingStartTime = bookingStartTime;
         this.bookingEndTime = bookingEndTime;
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     // Getters
@@ -63,6 +78,7 @@ public class Booking {
         this.resourceID = resourceID;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
     }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head>
+    <title>User Management</title>
+
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="container">
+        <h1 class="title">User Management</h1> <!-- Add 'title' class -->
+        <a th:href="@{/user-management/new}" class="btn btn-primary">Add New User</a> <!-- Add 'btn btn-primary' classes -->
+        <p th:text="${successMessage}"></p>
+        <table class="table"> <!-- Add 'table' class -->
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.userName}"></td>
+                <td th:text="${user.userEmail}"></td>
+                <td th:text="${user.userContact}"></td>
+                <td th:text="${user.role}"></td>
+                <td>
+                    <a th:href="@{/user-management/edit/{id}(id=${user.userID})}" class="btn btn-primary">Edit</a> <!-- Add 'btn btn-primary' classes -->
+                    <a th:href="@{/user-management/delete/{id}(id=${user.userID})}" class="btn btn-danger">Delete</a> <!-- Add 'btn btn-danger' classes -->
+                </td>
+            </tr>
+        </table>
+    </div>
+</main>
+</body>
+</html>

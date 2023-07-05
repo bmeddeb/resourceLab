@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+  <title>Report Details</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+  <div class="container">
+    <h1>Report Details</h1>
+    <a class="btn btn-primary" th:href="@{/reports}">Back to Reports List</a>
+
+  <p>
+    <strong>Report ID:</strong> <span th:text="${report.reportID}"></span>
+  </p>
+
+  <p>
+    <strong>Resource ID:</strong> <span th:text="${report.resourceID}"></span>
+  </p>
+
+  <p>
+    <strong>User ID:</strong> <span th:text="${report.userID}"></span>
+  </p>
+
+  <p>
+    <strong>Generated Date:</strong> <span th:text="${report.generatedDate}"></span>
+  </p>
+
+  <p>
+    <strong>Report:</strong>
+  </p>
+    <pre><code th:classappend="${dataType}" th:utext="${report.utilizationData}"></code></pre>
+
+    <a th:href="@{/reports/edit/{id}(id=${report.reportID})}">Edit Report</a>
+  <a th:href="@{/reports/delete/{id}(id=${report.reportID})}">Delete Report</a>
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    hljs.highlightAll();
+  });
+</script>
+
+</body>
+</html>
