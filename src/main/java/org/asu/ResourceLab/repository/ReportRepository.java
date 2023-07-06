@@ -35,7 +35,7 @@ public class ReportRepository {
         return jdbcTemplate.queryForList("SELECT ResourceID, COUNT(*) as maintenanceCount FROM Maintenance GROUP BY ResourceID");
     }
 
-    // Peak Usage Report
+
     // Peak Usage Report
     public List<Map<String, Object>> getPeakUsageReport() {
         List<Map<String, Object>> peakUsageList = new ArrayList<>();

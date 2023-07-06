@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head>
+  <title>User Activity</title>
+</head>
+<body>
+<main layout:fragment="content">
+  <h1>Resource Utilization Report</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Resource ID</th>
+      <th>Booking Count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="record : ${report}">
+      <td th:text="${record['ResourceID']}"></td>
+      <td th:text="${record['bookingCount']}"></td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+</body>
+</html>

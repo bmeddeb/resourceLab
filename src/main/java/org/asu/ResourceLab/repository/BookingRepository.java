@@ -60,4 +60,5 @@ public class BookingRepository {
         return jdbcTemplate.update("UPDATE Booking SET UserID=?, ResourceID=?, BookingDate=?, BookingStartTime=?, BookingEndTime=?, Status=? WHERE BookingID=?",
                 new Object[]{booking.getUserID(), booking.getResourceID(), booking.getBookingDate(), booking.getBookingStartTime(), booking.getBookingEndTime(), booking.getStatus(), booking.getBookingID()});
     }
+    
 }
