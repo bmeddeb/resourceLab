@@ -7,20 +7,21 @@
 <body>
 <main layout:fragment="content">
   <div class="container">
-    <h1 class="title">Edit User</h1> <!-- Add 'title' class -->
-    <form th:action="@{/user-management/update/{id}(id=${user.userID})}" method="post" class="form"> <!-- Add 'form' class -->
-      <input type="hidden" id="id" name="id" th:value="${user.userID}">
+    <h1 class="title">Add User</h1>
+
+    <form th:object="${user}" th:action="@{/user-management/save}" method="post" class="form"> <!-- Add 'form' class -->
+
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username" th:value="${user.userName}" required>
+      <input type="text" th:field="*{userName}" id="username">
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" th:value="${user.userEmail}" required>
+      <input type="email" th:field="*{userEmail}" id="email">
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" th:value="${user.userPassword}" required>
+      <input type="password" th:field="*{userPassword}" id="password">
       <label for="contact">Contact:</label>
-      <input type="text" id="contact" name="contact" th:value="${user.userContact}">
+      <input type="text" th:field="*{userContact}" id="contact">
       <label for="role">Role:</label>
-      <input type="text" id="role" name="role" th:value="${user.role}" required>
-      <button type="submit" class="btn btn-primary">Update User</button> <!-- Add 'btn btn-primary' classes -->
+      <input type="text" th:field="*{role}" id="role">
+      <button type="submit" class="btn btn-primary">Save</button> <!-- Add 'btn btn-primary' classes -->
     </form>
   </div>
 </main>

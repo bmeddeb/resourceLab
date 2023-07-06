@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping("/new")
     public String viewCreateUserForm(Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("breadcrumbs", Arrays.asList("Home", "User Management", "Create User"));
+        model.addAttribute("title", "Add a User");  // Set title
         return "user-management/form";
     }
 
@@ -36,7 +36,7 @@ public class UserController {
     public String viewEditUserForm(@PathVariable int id, Model model) {
         User user = userRepository.getUserById(id);
         model.addAttribute("user", user);
-        model.addAttribute("breadcrumbs", Arrays.asList("Home", "User Management", "Edit User"));
+        model.addAttribute("title", "Edit User");  // Set title
         return "user-management/form";
     }
 

@@ -18,20 +18,6 @@ public class UserRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public User getUserByUsername (String username) {
-        try {
-            return jdbcTemplate.queryForObject("SELECT * FROM User WHERE UserName=?", new Object[]{username}, new UserRowMapper());
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-    }
-
-    public int createUser(User user) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(user.getUserPassword());
-        return jdbcTemplate.update("INSERT INTO User(UserName, UserEmail, UserPassword, UserContact, Role) VALUES (?, ?, ?, ?, ?)",
-                new Object[]{user.getUserName(), user.getUserEmail(), encodedPassword, user.getUserContact(), user.getRole()});
-    }
 
 
 
@@ -50,6 +36,20 @@ public class UserRepository {
         }
     }
 
+    public User getUserByUsername (String username) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM User WHERE UserName=?", new Object[]{username}, new UserRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public int createUser(User user) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getUserPassword());
+        return jdbcTemplate.update("INSERT INTO User(UserName, UserEmail, UserPassword, UserContact, Role) VALUES (?, ?, ?, ?, ?)",
+                new Object[]{user.getUserName(), user.getUserEmail(), encodedPassword, user.getUserContact(), user.getRole()});
+    }
 
     public User getUserById(int id) {
         try {

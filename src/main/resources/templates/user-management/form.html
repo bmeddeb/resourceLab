@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
 <head>
-  <title>Create or Edit User</title>
+  <<h1 class="title" th:text="${title}"></h1>
 
 </head>
 <body>
 
 <main layout:fragment="content">
   <div class="container">
-    <h1 th:if="${user.userID} == null" class="title">Create User</h1> <!-- Add 'title' class -->
-    <h1 th:unless="${user.userID} == null" class="title">Edit User</h1> <!-- Add 'title' class -->
+
+
     <form th:object="${user}" th:action="@{/user-management/save}" method="post" class="form"> <!-- Add 'form' class -->
       <input type="hidden" th:field="*{userID}">
       <label for="username">Username:</label>

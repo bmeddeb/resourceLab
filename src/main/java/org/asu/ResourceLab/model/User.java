@@ -3,7 +3,7 @@ package org.asu.ResourceLab.model;
 
 public class User {
 
-    private Integer userID;
+    private Integer userID =0 ;
     private String userName;
     private String userEmail;
     private String userPassword;
@@ -15,7 +15,7 @@ public class User {
     }
 
     public User(int userID, String userName, String userEmail, String userPassword, String userContact, String role) {
-        this.userID = this.userID;
+        this.userID = userID;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -27,7 +27,7 @@ public class User {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Integer userID) {
         this.userID = userID;
     }
 
